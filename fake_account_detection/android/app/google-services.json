@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "89663405006",
+    "project_id": "impostr-20714",
+    "storage_bucket": "impostr-20714.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89663405006:android:f9579e485b711a5f87499f",
+        "android_client_info": {
+          "package_name": "com.example.fake_account_detection"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX2iK42QQO_21gYbBu1kZMP-LB7I-FULY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
