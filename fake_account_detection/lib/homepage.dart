@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -13,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Fake Account Detector',
           style: TextStyle(color: Colors.black),
         ),
@@ -32,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Select Platform:', style: Theme.of(context).textTheme.bodyLarge),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: DropdownButton<String>(
                       value: _selectedPlatform,
@@ -43,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                         });
                       },
                       items: [
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           value: 'Select Platform',
                           child: Text('Select Platform'),
                         ),
@@ -52,8 +54,8 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                             children: [
                               Image.asset('assets/instagram.png', height: 24, width: 24),
-                              SizedBox(width: 10),
-                              Text('Instagram'),
+                              const SizedBox(width: 10),
+                              const Text('Instagram'),
                             ],
                           ),
                         ),
@@ -62,8 +64,8 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                             children: [
                               Image.asset('assets/facebook.png', height: 24, width: 24),
-                              SizedBox(width: 10),
-                              Text('Facebook'),
+                              const SizedBox(width: 10),
+                              const Text('Facebook'),
                             ],
                           ),
                         ),
@@ -72,8 +74,8 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                             children: [
                               Image.asset('assets/twitter.png', height: 24, width: 24),
-                              SizedBox(width: 10),
-                              Text('Twitter'),
+                              const SizedBox(width: 10),
+                              const Text('Twitter'),
                             ],
                           ),
                         ),
@@ -82,20 +84,20 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              TextField(
+              const SizedBox(height: 20),
+              const TextField(
                 decoration: InputDecoration(labelText: 'Enter Account URL'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
                     _showDetails = !_showDetails;
                   });
                 },
-                child: Text('Fetch Account Details'),
+                child: const Text('Fetch Account Details'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               if (_showDetails)
                 Column(
                   children: [
@@ -104,14 +106,14 @@ class _HomePageState extends State<HomePage> {
                       style: Theme.of(context).textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
                           _showDetails = false;
                         });
                       },
-                      child: Text('Start Detection Test'),
+                      child: const Text('Start Detection Test'),
                     ),
                   ],
                 ),

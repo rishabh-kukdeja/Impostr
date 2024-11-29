@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import '../Widget/button.dart';
-import '../Services/authentication.dart';
-import '../Widget/snackbar.dart';
-import '../Widget/text_field.dart';
-import './homescreen.dart';
+import '../Widget/snackbar.dart'; // If you want to show custom messages
+import '../Widget/text_field.dart'; // You can also remove this if you don't need custom text fields
+import './homescreen.dart'; // You can still navigate to HomeScreen or replace with another screen
 import 'login_page.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -27,35 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
     nameController.dispose();
   }
 
-  void signupUser() async {
-    // set is loading to true.
-    setState(() {
-      isLoading = true;
-    });
-    // signup user using our authmethod
-    String res = await AuthMethod().signupUser(
-        email: emailController.text,
-        password: passwordController.text,
-        name: nameController.text);
-    // if string return is success, user has been creaded and navigate to next screen other witse show error.
-    if (res == "success") {
-      setState(() {
-        isLoading = false;
-      });
-      //navigate to the next screen
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ),
-      );
-    } else {
-      setState(() {
-        isLoading = false;
-      });
-      // show error
-      showSnackBar(context, res);
-    }
-  }
+  // Removed the signupUser method
 
   @override
   Widget build(BuildContext context) {
@@ -63,55 +34,80 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-          child: SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: height / 2.8,
-              child: Image.asset('images/signup.jpeg'),
-            ),
-            TextFieldInput(
+        child: SizedBox(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: height / 2.8,
+                child: Image.asset('images/signup.jpeg'),
+              ),
+              TextFieldInput(
                 icon: Icons.person,
                 textEditingController: nameController,
                 hintText: 'Enter your name',
-                textInputType: TextInputType.text),
-            TextFieldInput(
+                textInputType: TextInputType.text
+              ),
+              TextFieldInput(
                 icon: Icons.email,
                 textEditingController: emailController,
                 hintText: 'Enter your email',
-                textInputType: TextInputType.text),
-            TextFieldInput(
-              icon: Icons.lock,
-              textEditingController: passwordController,
-              hintText: 'Enter your passord',
-              textInputType: TextInputType.text,
-              isPass: true,
-            ),
-            MyButtons(onTap: signupUser, text: "Sign Up"),
-            const SizedBox(height: 50),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Already have an account?"),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    " Login",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
-            )
-          ],
+                textInputType: TextInputType.text
+              ),
+              TextFieldInput(
+                icon: Icons.lock,
+                textEditingController: passwordController,
+                hintText: 'Enter your password',
+                textInputType: TextInputType.text,
+                isPass: true,
+              ),
+              MyButtons(
+                onTap: () {
+                  // Perform a different action here if needed
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Signup'),
+                        content: Text('Signup functionality is removed.'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                text: "Sign Up", // You can change the text to any action you need
+              ),
+              const SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Already have an account?"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      " Login",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
